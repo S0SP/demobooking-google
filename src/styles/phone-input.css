@@ -1,0 +1,43 @@
+/* src/styles/phone-input.css */
+
+/* Wrapper flex layout */
+.PhoneInput {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+}
+
+/* Country selector wrapper */
+.PhoneInputCountry {
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex-shrink: 0;
+  padding-right: 4px;
+  border-right: 1px solid #e2e8f0;
+  margin-right: 4px;
+}
+
+/* Hide default country icon (we use flag-icons CSS) */
+.PhoneInputCountryIcon {
+  display: none;
+}
+
+/* Number input */
+.PhoneInput input[type="tel"] {
+  flex: 1;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: #0f172a;
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.PhoneInput input[type="tel"]::placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+}

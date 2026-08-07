@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    /* Default is 16px (100%). Changing this to 14.4px scales the entire Tailwind UI down to exactly 90% */
+    font-size: 15px;
+  }
+}
+
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--bg-base);
+  --color-foreground: var(--text-primary);
+  --color-muted: var(--text-muted);
+  --color-primary: #2F80F9;
+  --color-secondary: #08BD7E;
+
+  --animate-marquee: marquee 35s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-100%);
+    }
+  }
+}
+
+/* Inter font is served by next/font/google in layout.tsx - no manual @font-face needed */
+
+:root {
+  --bg-base: #FFFFFF;
+  --bg-panel: #F9FAFB;
+  --text-primary: #0F1729;
+  /* rgb(15, 23, 41) roughly */
+  --text-muted: #65758B;
+  /* rgb(101, 117, 139) */
+  --brand-blue: #2F80F9;
+  --brand-green: #08BD7E;
+
+  --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-inter);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.inter {
+  font-family: var(--font-inter);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-inter);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+p {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Calendar & Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--brand-blue);
+  border-radius: 3px;
+}
+
+::selection {
+  background: var(--brand-blue);
+  color: white;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Safari sub-pixel rendering fix for SVG dividers */
+svg {
+  shape-rendering: geometricPrecision;
+  transform: translateZ(0);
+}
