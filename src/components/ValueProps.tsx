@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Quote } from "lucide-react";
+import { Quote } from "lucide-react";
 
 export function ValueProps() {
   return (
@@ -63,11 +63,8 @@ export function ValueProps() {
             <div className="bg-white rounded-[24px] p-5 flex-1 flex flex-col justify-between">
               <div className="flex items-start justify-between mb-4">
                 <Quote className="w-10 h-10 rotate-180" style={{ color: '#FF8A00', fill: '#FF8A00' }} />
-                <div className="flex items-center gap-2 border border-slate-100 rounded-full pl-3 pr-1 py-1">
-                  <span className="text-[13px] font-medium text-slate-500">Tutors</span>
-                  <div className="w-7 h-7 rounded-full flex items-center justify-center text-white bg-[var(--brand-blue)]">
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </div>
+                <div className="flex items-center gap-2 border border-slate-100 rounded-full px-3.5 py-1 bg-slate-50">
+                  <span className="text-[13px] font-bold text-slate-500">Tutors</span>
                 </div>
               </div>
               <p className="text-slate-600 text-[14px] leading-relaxed">
@@ -98,9 +95,6 @@ export function ValueProps() {
                 alt="Student studying online"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-lg shadow-md border border-slate-100">
-                <img src="/logo.png" alt="UnboundYou" className="h-4 object-contain" />
-              </div>
             </div>
           </motion.div>
 
