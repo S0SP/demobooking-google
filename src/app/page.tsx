@@ -38,8 +38,8 @@ export default async function Home() {
       <SelectionCriteria />
       <TrustedBy />
       <ComparisonChecklist />
-      <ComparisonGrid />
       <SlimBanner />
+      <ComparisonGrid />
       <TeacherTimeline />
       <ProgramsOffered />
       <MentorshipShowcase />
