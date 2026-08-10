@@ -339,6 +339,58 @@ function IntroForm({
   );
 }
 
+/* ─── Helper for Blocked Days ─────────────────────────────────────────────── */
+
+// Deterministically generates 3-4 blocked days in a given month/year.
+// These are not recurring days of the week, and Saturdays/Sundays are never blocked.
+function getBlockedDaysForMonth(year: number, month: number): number[] {
+  const seed = (year * 12 + month) % 10;
+  // Even seeds get 4 blocked days, odd get 3.
+  const numDays = seed % 2 === 0 ? 4 : 3;
+  const baseDays = [8, 15, 22, 27];
+  const blocked: number[] = [];
+
+  for (let i = 0; i < numDays; i++) {
+    const variation = ((seed + i) % 5) - 2; // -2, -1, 0, 1, or 2
+    let day = baseDays[i] + variation;
+
+    // Keep day in bounds
+    if (day < 1) day = 1;
+
+    // Avoid Saturdays (6) and Sundays (0)
+    const date = new Date(year, month, day);
+    const dayOfWeek = date.getDay();
+    if (dayOfWeek === 6) {
+      day = day - 1; // shift to Friday
+    } else if (dayOfWeek === 0) {
+      day = day + 1; // shift to Monday
+    }
+
+    // Keep day in bounds after shift
+    if (day < 1) day = 1;
+
+    if (!blocked.includes(day)) {
+      blocked.push(day);
+    } else {
+      // Find a nearby weekday to avoid duplicates
+      let altDay = day;
+      for (const offset of [2, -2, 3, -3, 4, -4]) {
+        altDay = day + offset;
+        if (altDay >= 1 && altDay <= 28) {
+          const altDate = new Date(year, month, altDay);
+          const altDOW = altDate.getDay();
+          if (altDOW !== 0 && altDOW !== 6 && !blocked.includes(altDay)) {
+            blocked.push(altDay);
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  return blocked.sort((a, b) => a - b);
+}
+
 /* ─── Step 2: Calendar & Time ─────────────────────────────────────────────── */
 
 function CalendarStep({
@@ -358,7 +410,7 @@ function CalendarStep({
   const [errorMessage, setErrorMessage] = useState("");
 
   const selectedDateObj = selectedDate ? new Date(currentMonth.getFullYear(), currentMonth.getMonth(), selectedDate) : null;
-  const isWeekendSelected = selectedDateObj ? (selectedDateObj.getDay() === 0 || selectedDateObj.getDay() === 6) : false;
+  const isWeekendSelected = selectedDateObj ? selectedDateObj.getDay() === 0 : false;
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const scheduleRef = useRef<HTMLDivElement>(null);
@@ -589,10 +641,11 @@ function CalendarStep({
             const isSelected = selectedDate === day;
 
             const dayOfWeek = thisDate.getDay();
-            const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+            const isWeekend = dayOfWeek === 0;
             
-            // Scarcity rule: Wednesdays and even Tuesdays are fully unavailable
-            const isUnavailable = dayOfWeek === 3 || (dayOfWeek === 2 && day % 2 === 0);
+            // Scarcity rule: Exactly 3-4 days in a month are blocked (never Saturdays/Sundays, not recurring)
+            const blockedDays = getBlockedDaysForMonth(currentMonth.getFullYear(), currentMonth.getMonth());
+            const isUnavailable = blockedDays.includes(day);
             const isDisabled = isPast || isUnavailable;
 
             let btnClass = "aspect-square flex items-center justify-center rounded-xl text-sm font-bold transition-all ";
@@ -635,7 +688,7 @@ function CalendarStep({
           </div>
           <div className="flex items-center gap-1">
             <div className="w-2 h-2 rounded-full bg-amber-100 border border-amber-200" />
-            <span>Weekend</span>
+            <span>Sunday</span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-2 h-2 rounded-full bg-slate-100 line-through opacity-50" />
@@ -734,9 +787,9 @@ function CalendarStep({
                   <div className="flex items-start gap-2 bg-amber-50 text-amber-800 text-xs px-3.5 py-3 rounded-xl mt-4 border border-amber-100">
                     <AlertTriangle className="w-4.5 h-4.5 text-amber-500 flex-shrink-0 mt-0.5" />
                     <div>
-                      <p className="font-bold text-amber-900 mb-0.5">Weekend slot selected</p>
+                      <p className="font-bold text-amber-900 mb-0.5">Sunday slot selected</p>
                       <p className="font-semibold text-amber-800 leading-relaxed">
-                        Weekend demo confirmations may take a little longer. We&apos;ll confirm your slot shortly.
+                        Sunday demo confirmations may take a little longer. We&apos;ll confirm your slot shortly.
                       </p>
                     </div>
                   </div>
