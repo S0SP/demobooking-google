@@ -47,7 +47,7 @@ export function SelectionCriteria() {
             viewport={{ once: true }}
             className="text-3xl md:text-[40px] font-bold text-[#0F1729] tracking-tight"
           >
-            3 Key Selection <span className="text-[var(--brand-blue)]">Criteria</span>
+            3 Key Selection Criteria for <span className="text-[var(--brand-blue)]">UnboundYou Tutors</span>
           </motion.h2>
         </div>
 

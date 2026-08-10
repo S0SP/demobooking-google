@@ -97,14 +97,14 @@ export function FeaturesSection() {
         <div ref={headerRef} className="text-center max-w-3xl mx-auto mb-10 md:mb-20 px-4 md:px-0">
           <div className="inline-flex items-center gap-2 bg-[var(--brand-blue)]/5 text-[var(--brand-blue)] text-[11px] md:text-[12px] font-bold px-3 py-1 md:px-4 md:py-1 rounded-full mb-4 uppercase tracking-widest">
             <Sparkles className="w-3 h-3" />
-            The Unbound Advantage
+            The UnboundYou Advantage
           </div>
           <h2 className="text-3xl md:text-[48px] font-bold text-[#0F1729] leading-tight mb-4 md:mb-6 tracking-tight">
             Everything You Need for <br />
             <span className="text-[var(--brand-blue)]">Academic Excellence</span>
           </h2>
           <p className="text-sm md:text-[18px] text-[#65758B] font-medium leading-relaxed max-w-sm mx-auto md:max-w-none">
-            We provide a comprehensive learning ecosystem designed specifically for the unique demands of IGCSE and IB curriculums.
+            We provide a comprehensive learning ecosystem designed specifically for the unique demands of IGCSE curriculums.
           </p>
         </div>
 
@@ -116,8 +116,8 @@ export function FeaturesSection() {
             <div
               key={feature.title}
               className={`relative flex flex-row items-center gap-4 p-4 md:flex-col md:items-start md:gap-6 md:p-8 rounded-2xl md:rounded-[32px] border bg-white transition-all duration-500 group overflow-hidden ${feature.highlight
-                  ? "border-[var(--brand-blue)]/30 shadow-sm md:shadow-xl shadow-black/5 hover:shadow-2xl hover:shadow-black/10 md:hover:-translate-y-2"
-                  : "border-slate-100 shadow-sm md:hover:shadow-2xl md:hover:shadow-slate-200/50 md:hover:-translate-y-2 hover:border-[var(--brand-blue)]/20"
+                ? "border-[var(--brand-blue)]/30 shadow-sm md:shadow-xl shadow-black/5 hover:shadow-2xl hover:shadow-black/10 md:hover:-translate-y-2"
+                : "border-slate-100 shadow-sm md:hover:shadow-2xl md:hover:shadow-slate-200/50 md:hover:-translate-y-2 hover:border-[var(--brand-blue)]/20"
                 }`}
             >
               {/* Subtle Corner Accent */}
