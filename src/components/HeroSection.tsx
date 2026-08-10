@@ -53,7 +53,7 @@ export function HeroSection({
             <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
               className="text-sm md:text-base md:text-lg text-[#65758B] font-medium mb-6 md:mb-8 max-w-lg mx-auto lg:mx-0 leading-[1.6]"
             >
-              Top global provider for expert IGCSE online tuition. Connect with a dedicated IGCSE online tutor for Maths, Physics, Chemistry, Biology, and English.
+              Top global provider for expert IGCSE online tuition. Connect with a dedicated IGCSE online tutor for Maths, Physics, Chemistry, Biology, English, French, ICT, and Computer Science.
             </motion.p>
 
             {/* Feature Pills */}
@@ -106,9 +106,13 @@ export function HeroSection({
                 <div className="w-1 h-1 rounded-full bg-slate-300" />
                 <span className="text-[#0F1729]">Biology</span>
                 <div className="w-1 h-1 rounded-full bg-slate-300" />
+                <span className="text-[#0F1729]">English</span>
+                <div className="w-1 h-1 rounded-full bg-slate-300" />
                 <span className="text-[#0F1729]">French</span>
                 <div className="w-1 h-1 rounded-full bg-slate-300" />
                 <span className="text-[#0F1729]">ICT</span>
+                <div className="w-1 h-1 rounded-full bg-slate-300" />
+                <span className="text-[#0F1729]">Computer Science</span>
               </div>
             </motion.div>
 
