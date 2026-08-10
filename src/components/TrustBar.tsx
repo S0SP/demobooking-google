@@ -15,9 +15,7 @@ export function TrustBar() {
             <div className="flex items-center gap-2">
               <span className="font-black text-xl text-slate-800">CAIE Aligned</span>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="font-black text-xl text-slate-800">IB Board</span>
-            </div>
+
           </div>
 
           {/* Trustpilot Side */}

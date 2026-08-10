@@ -84,7 +84,7 @@ async function createRazorpayOrder(
       receipt: bookingId.slice(0, 40),
       notes: {
         booking_id: bookingId,
-        source: "demo_landing_page",
+        source: "demo_landing_page_google",
       },
     }),
   });

@@ -47,7 +47,7 @@ export function HeroSection({
             <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
               className="text-2xl md:text-3xl lg:text-[42px] font-bold text-[#0F1729] leading-tight md:leading-[1.15] mb-4 tracking-tight"
             >
-              Personalized <span className="text-[var(--brand-blue)]">IGCSE</span> Online Tuition & GCE A-Level Tuition
+              Personalized <span className="text-[var(--brand-blue)]">IGCSE</span> Online Tuition
             </motion.h1>
 
             <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
@@ -62,7 +62,7 @@ export function HeroSection({
             >
               {[
                 { icon: "https://img.icons8.com/color/48/teacher.png", text: "One-on-One Live Tutoring" },
-                { icon: "https://img.icons8.com/color/48/books.png", text: "Exhaustive Study Material" },
+                { icon: "https://img.icons8.com/color/48/books.png", text: "Test Series" },
                 { icon: "https://img.icons8.com/color/48/clipboard.png", text: "Customized Course Plan" },
                 { icon: "https://img.icons8.com/color/48/calendar--v1.png", text: "Monthly Parent-Teacher Meetings" },
               ].map((pill, i) => (
@@ -98,17 +98,17 @@ export function HeroSection({
               <div className="w-full max-w-md h-px bg-slate-100" />
 
               <div className="flex flex-wrap justify-center lg:justify-start items-center gap-y-2 gap-x-3 text-sm font-bold">
-                <span className="text-[#3B82F6]">Mathematics</span>
+                <span className="text-[var(--brand-blue)]">Mathematics</span>
                 <div className="w-1 h-1 rounded-full bg-slate-300" />
-                <span className="text-[#10B981]">Physics</span>
+                <span className="text-[var(--brand-blue)]">Physics</span>
                 <div className="w-1 h-1 rounded-full bg-slate-300" />
-                <span className="text-[#0EA5E9]">Chemistry</span>
+                <span className="text-[var(--brand-blue)]">Chemistry</span>
                 <div className="w-1 h-1 rounded-full bg-slate-300" />
-                <span className="text-[#EC4899]">Biology</span>
+                <span className="text-[var(--brand-blue)]">Biology</span>
                 <div className="w-1 h-1 rounded-full bg-slate-300" />
-                <span className="text-[#F59E0B]">French</span>
+                <span className="text-[var(--brand-blue)]">French</span>
                 <div className="w-1 h-1 rounded-full bg-slate-300" />
-                <span className="text-[#8B5CF6]">ICT</span>
+                <span className="text-[var(--brand-blue)]">ICT</span>
               </div>
             </motion.div>
 

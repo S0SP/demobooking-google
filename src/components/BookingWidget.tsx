@@ -357,6 +357,9 @@ function CalendarStep({
   const [bookingStatus, setBookingStatus] = useState<BookingStatus>("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
+  const selectedDateObj = selectedDate ? new Date(currentMonth.getFullYear(), currentMonth.getMonth(), selectedDate) : null;
+  const isWeekendSelected = selectedDateObj ? (selectedDateObj.getDay() === 0 || selectedDateObj.getDay() === 6) : false;
+
   const scrollRef = useRef<HTMLDivElement>(null);
   const scheduleRef = useRef<HTMLDivElement>(null);
 
@@ -538,6 +541,16 @@ function CalendarStep({
       {/* Scrollable body */}
       <div ref={scrollRef} className="overflow-y-auto scrollbar-hide flex-1">
 
+        {/* Scarcity Banner / Supporting Copy */}
+        <div className="bg-slate-50 rounded-xl p-3 mb-4 border border-slate-100 text-center calendar-animate">
+          <p className="text-[13px] font-bold text-slate-800">
+            Choose a convenient time for your demo class.
+          </p>
+          <p className="text-[11px] text-amber-600 font-bold mt-1">
+            ⚠️ Limited slots available each week.
+          </p>
+        </div>
+
         {/* Month nav */}
         <div className="flex items-center justify-between calendar-animate mb-4">
           <select
@@ -560,7 +573,7 @@ function CalendarStep({
         </div>
 
         {/* Calendar grid */}
-        <div className="grid grid-cols-7 gap-1 text-center mb-6">
+        <div className="grid grid-cols-7 gap-1 text-center mb-4">
           {["Su", "M", "T", "W", "Th", "F", "S"].map((d) => (
             <div key={d} className="text-[10px] font-bold text-slate-400 mb-2">{d}</div>
           ))}
@@ -573,27 +586,61 @@ function CalendarStep({
             ); thisDate.setHours(0, 0, 0, 0);
 
             const isPast = thisDate < today;
-            const isToday = thisDate.getTime() === today.getTime();
             const isSelected = selectedDate === day;
+
+            const dayOfWeek = thisDate.getDay();
+            const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+            
+            // Scarcity rule: Wednesdays and even Tuesdays are fully unavailable
+            const isUnavailable = dayOfWeek === 3 || (dayOfWeek === 2 && day % 2 === 0);
+            const isDisabled = isPast || isUnavailable;
+
+            let btnClass = "aspect-square flex items-center justify-center rounded-xl text-sm font-bold transition-all ";
+            if (isSelected) {
+              btnClass += "bg-[var(--brand-blue)] text-white shadow-md scale-110";
+            } else if (isPast) {
+              btnClass += "text-slate-300 cursor-not-allowed";
+            } else if (isUnavailable) {
+              btnClass += "text-slate-300 bg-slate-50 line-through cursor-not-allowed opacity-50";
+            } else if (isWeekend) {
+              btnClass += "border border-amber-200 bg-amber-50/20 text-amber-900 hover:bg-amber-50/50";
+            } else if (thisDate.getTime() === today.getTime()) {
+              btnClass += "text-[var(--brand-blue)] bg-[var(--brand-blue)]/5 hover:bg-[var(--brand-blue)]/10";
+            } else {
+              btnClass += "text-slate-600 hover:bg-slate-50";
+            }
 
             return (
               <button
                 key={day}
-                onClick={() => !isPast && setSelectedDate(day)}
-                disabled={isPast}
-                className={`aspect-square flex items-center justify-center rounded-xl text-sm font-bold transition-all
-                  ${isSelected
-                    ? "bg-[var(--brand-blue)] text-white shadow-md scale-110"
-                    : isToday
-                      ? "text-[var(--brand-blue)] bg-[var(--brand-blue)]/5"
-                      : isPast
-                        ? "text-slate-300 cursor-not-allowed"
-                        : "text-slate-600 hover:bg-slate-50"}`}
+                onClick={() => !isDisabled && setSelectedDate(day)}
+                disabled={isDisabled}
+                className={btnClass}
               >
                 {day}
               </button>
             );
           })}
+        </div>
+
+        {/* Legend */}
+        <div className="flex justify-center items-center gap-3.5 text-[10px] font-bold text-slate-400 mb-6 calendar-animate">
+          <div className="flex items-center gap-1">
+            <div className="w-2 h-2 rounded-full bg-slate-200 border border-slate-300" />
+            <span>Available</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <div className="w-2 h-2 rounded-full bg-[var(--brand-blue)]" />
+            <span>Selected</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <div className="w-2 h-2 rounded-full bg-amber-100 border border-amber-200" />
+            <span>Weekend</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <div className="w-2 h-2 rounded-full bg-slate-100 line-through opacity-50" />
+            <span>Unavailable</span>
+          </div>
         </div>
 
         {/* Time + TZ picker */}
@@ -681,6 +728,19 @@ function CalendarStep({
                     Our team will confirm exact time via WhatsApp
                   </p>
                 </div>
+
+                {/* Weekend Confirmation Alert */}
+                {isWeekendSelected && (
+                  <div className="flex items-start gap-2 bg-amber-50 text-amber-800 text-xs px-3.5 py-3 rounded-xl mt-4 border border-amber-100">
+                    <AlertTriangle className="w-4.5 h-4.5 text-amber-500 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-bold text-amber-900 mb-0.5">Weekend slot selected</p>
+                      <p className="font-semibold text-amber-800 leading-relaxed">
+                        Weekend demo confirmations may take a little longer. We&apos;ll confirm your slot shortly.
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Summary card */}

@@ -22,12 +22,12 @@ export const metadata: Metadata = {
     "online tuition igcse", "igcse physics online tutor", "igcse english online tutor",
     "igcse biology online tutor", "igcse chemistry online tutor", "igcse chemistry tutor online",
     "online igcse maths tutor", "online igcse physics tutor", "physics igcse tutor online",
-    "IB tutoring", "1-on-1 tutoring"
+    "IGCSE tutoring", "1-on-1 tutoring"
   ],
   authors: [{ name: "UnboundYou" }],
   openGraph: {
     title: "UnboundYou | Elite 1-on-1 IGCSE Tutoring",
-    description: "Master IGCSE and IB with top 1% mentors. Personalized 1-on-1 online tutoring.",
+    description: "Master IGCSE with top 1% mentors. Personalized 1-on-1 online tutoring.",
     url: "https://unboundyou.com",
     siteName: "UnboundYou",
     locale: "en_US",

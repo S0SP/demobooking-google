@@ -13,8 +13,8 @@ gsap.registerPlugin(ScrollTrigger);
 const steps = [
   {
     iconUrl: "https://img.icons8.com/?id=nbBCL87roGNj&format=png&size=64",
-    title: "Fill Details / Select Curriculum",
-    description: "Share your child's grade, subject needs, and IGCSE or IB curriculum path to get matched with the right specialist.",
+    title: "Fill Details",
+    description: "Share your child's grade, subject needs, and IGCSE curriculum path to get matched with the right specialist.",
     color: "var(--brand-blue)",
   },
   {
@@ -172,8 +172,8 @@ export function TeacherTimeline() {
               <p className="text-sm md:text-[16px] text-[#65758B] font-medium mb-6 md:mb-10 leading-relaxed max-w-md text-center lg:text-left">
                 Only 5 in 1,000 tutors make it through the <span className="text-[var(--brand-blue)] font-bold">Unbound</span><span className="text-[var(--brand-green)] font-bold">You</span> hiring process. Our standards are more rigorous than most competitive exams.
               </p>
-              
-              <button 
+
+              <button
                 onClick={() => document.getElementById("booking-card")?.scrollIntoView({ behavior: "smooth" })}
                 className="w-fit mx-auto lg:mx-0 flex items-center justify-center gap-2 bg-[var(--brand-blue)] text-white px-6 h-11 md:h-12 rounded-xl text-sm font-bold hover:brightness-110 transition-all active:scale-95 shadow-lg shadow-black/10 mt-4 md:mt-2"
               >

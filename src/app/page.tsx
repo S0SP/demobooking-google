@@ -6,7 +6,6 @@ import { TrustedBy } from "@/components/TrustedBy";
 import { SelectionCriteria } from "@/components/SelectionCriteria";
 import { ComparisonChecklist } from "@/components/ComparisonChecklist";
 import { SlimBanner } from "@/components/SlimBanner";
-import { SuccessJourney } from "@/components/SuccessJourney";
 import { ProgramsOffered } from "@/components/ProgramsOffered";
 import { MentorshipShowcase } from "@/components/MentorshipShowcase";
 import { SuccessStories } from "@/components/SuccessStories";
@@ -41,7 +40,6 @@ export default async function Home() {
       <ComparisonChecklist />
       <ComparisonGrid />
       <SlimBanner />
-      <SuccessJourney />
       <TeacherTimeline />
       <ProgramsOffered />
       <MentorshipShowcase />

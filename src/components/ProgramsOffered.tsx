@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Calendar, Rocket, FileSearch } from "lucide-react";
+import { Calendar, FileSearch } from "lucide-react";
 import Image from "next/image";
 
 export function ProgramsOffered() {
@@ -15,16 +15,6 @@ export function ProgramsOffered() {
         "Create a personalized curriculum plan",
         "Estimate total hours based on topic-by-topic learning pace",
         "Include time for tests, assessments, and past papers"
-      ]
-    },
-    {
-      title: "Crash Course",
-      description: "Perfect for students with limited time before exams. Our intensive online tuition igcse program helps students:",
-      icon: <Rocket className="w-8 h-8 text-[var(--brand-blue)]" strokeWidth={1.5} />,
-      features: [
-        "Categorize chapters into: Comfortable, Partially Comfortable, and Uncomfortable",
-        "Tutors then prioritize the uncomfortable and partially comfortable topics",
-        "Final sessions include rigorous past paper practice"
       ]
     },
     {

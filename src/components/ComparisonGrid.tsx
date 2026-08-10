@@ -19,7 +19,7 @@ const journeyNodes = [
   {
     title: "Support",
     traditional: "Support stops completely once the tutor leaves.",
-    unbound: "24/7 doubt resolution when it's actually needed.",
+    unbound: "On-demand doubt resolution when it's actually needed.",
     iconUrl: "https://img.icons8.com/?id=GtgqQIYSqT50&format=png&size=64"
   },
   {

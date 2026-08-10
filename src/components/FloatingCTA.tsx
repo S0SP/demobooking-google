@@ -41,7 +41,7 @@ export function FloatingCTA() {
             transition={{ delay: 0.5 }}
             className="bg-white px-4 py-2 rounded-xl shadow-xl border border-slate-100 text-[13px] font-bold text-[#0F1729] whitespace-nowrap mb-1 mr-2"
           >
-            Chat with us <span className="text-[var(--brand-green)]">24/7</span>
+            Chat with us <span className="text-[var(--brand-green)]">on WhatsApp</span>
           </motion.div>
 
           <button

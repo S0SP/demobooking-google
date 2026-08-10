@@ -79,7 +79,7 @@ export function MentorshipShowcase() {
                   <Headphones className="w-6 h-6 text-white" strokeWidth={2.5} />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-[#0F1729] mb-1.5">24/7 Support</h3>
+                  <h3 className="text-lg font-bold text-[#0F1729] mb-1.5">Dedicated Support</h3>
                   <p className="text-[#65758B] text-[15px] font-medium leading-relaxed">
                     Ongoing academic support to ensure your child never feels stuck.
                   </p>

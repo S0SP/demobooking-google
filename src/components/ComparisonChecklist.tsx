@@ -7,7 +7,7 @@ export function ComparisonChecklist() {
   const shortfalls = [
     {
       title: "Extremely Limited Tutor Pool",
-      description: "Even the best international schools in India struggle to find qualified home tutors for IB, IGCSE, AP, and SAT — because they're restricted by local availability (just 10-50 km radius)."
+      description: "Even the best international schools in India struggle to find qualified home tutors for IGCSE — because they're restricted by local availability (just 10-50 km radius)."
     },
     {
       title: "Few International Experts Available Locally",
@@ -15,7 +15,7 @@ export function ComparisonChecklist() {
     },
     {
       title: "Real Experts Prefer Online Tutoring",
-      description: "Experienced IB/AP/IGCSE tutors now teach students globally via online platforms that save time and increase flexibility."
+      description: "Experienced IGCSE tutors now teach students globally via online platforms that save time and increase flexibility."
     },
     {
       title: "Risk of Unqualified Tutors",
@@ -26,15 +26,15 @@ export function ComparisonChecklist() {
   const benefits = [
     {
       title: "Global Access to True Experts",
-      description: "Connect with experienced IGCSE, IB, AP, and SAT tutors — no matter where they are. We, at UnboundYou offer you the global access to true experts of their subjects."
+      description: "Connect with experienced IGCSE tutors — no matter where they are. We, at UnboundYou offer you the global access to true experts of their subjects."
     },
     {
       title: "Flexible Scheduling, Zero Travel",
       description: "Choose time slots from out flexible schedule that match your child's rhythm and school timings."
     },
     {
-      title: "Consistent Availability",
-      description: "No last-minute cancellations or \"not available today\" issues — we ensure continuity."
+      title: "Recorded Sessions for Revision",
+      description: "Every class is recorded automatically, letting your child revisit explanations and revise at their own pace."
     },
     {
       title: "Results-Driven, Verified Tutors",

@@ -36,7 +36,7 @@ const metricCards = [
     grade: "IGCSE-10 Student",
     rating: 5,
     highlight: "Chemistry A* Result",
-    quote: "The personalized attention and AI practice from <span class=\"text-[var(--brand-blue)] font-bold\">Unbound</span><span class=\"text-[var(--brand-green)] font-bold\">You</span> helped me secure my A* in Chemistry.",
+    quote: "The personalized attention from <span class=\"text-[var(--brand-blue)] font-bold\">Unbound</span><span class=\"text-[var(--brand-green)] font-bold\">You</span> helped me secure my A* in Chemistry.",
     avatar: null,
     prevLabel: "Baseline",
     prevVal: "B",
@@ -353,7 +353,7 @@ export function SuccessStories() {
             Real Results, Real Stories
           </h2>
           <p className="text-sm md:text-[18px] !text-slate-100 px-6 md:px-0">
-            From IGCSE to IB, see how <span className="text-[var(--brand-blue)] font-bold">Unbound</span><span className="text-[var(--brand-green)] font-bold">You</span> mentors help students achieve a documented average 2-grade improvement within just 3 months.
+            See how <span className="text-[var(--brand-blue)] font-bold">Unbound</span><span className="text-[var(--brand-green)] font-bold">You</span> mentors help students achieve a documented average 2-grade improvement within just 3 months.
           </p>
         </div>
 
@@ -497,7 +497,7 @@ export function SuccessStories() {
             { label: "Success", value: "98%", full: "Success Rate" },
             { label: "Boost", value: "2+", full: "Avg Grade Boost" },
             { label: "Mentors", value: "150+", full: "Expert Mentors" },
-            { label: "Countries", value: "12+", full: "Countries" }
+            { label: "Countries", value: "4", full: "Countries" }
           ].map((stat, i) => (
             <div key={i} className="flex items-center gap-1 md:gap-2">
               <div className="flex items-baseline gap-1">

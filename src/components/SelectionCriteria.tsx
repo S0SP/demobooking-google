@@ -13,7 +13,7 @@ export function SelectionCriteria() {
         </div>
       ),
       title: "Only 1 in 20 applicants make it",
-      description: "We handpick tutors with strong command over IGCSE, IB, AP, or SAT methodology. Even seasoned teachers are not selected unless they match the pedagogy of international boards."
+      description: "We handpick tutors with strong command over IGCSE methodology. Even seasoned teachers are not selected unless they match the pedagogy of international boards."
     },
     {
       icon: (

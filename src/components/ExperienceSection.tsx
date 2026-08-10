@@ -149,7 +149,7 @@ export function ExperienceSection() {
                 <h4 className="text-white font-bold text-[14px] leading-tight">Top 1% Expert Mentors</h4>
               </div>
               <p className="text-slate-200 text-[12px] leading-relaxed font-medium">
-                Professional setups, crystal-clear audio, and deep IGCSE/IB expertise.
+                Professional setups, crystal-clear audio, and deep IGCSE expertise.
               </p>
             </motion.div>
           </motion.div>

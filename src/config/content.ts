@@ -7,12 +7,12 @@ export const SITE_CONTENT = {
   },
   hero: {
     badge: "WELCOME TO UNBOUNDYOU",
-    headline: "Elite 1-on-1 IGCSE, IB & A-Level Tutoring + AI Practice",
+    headline: "Elite 1-on-1 IGCSE Online Tuition",
     highlightWord: "IGCSE",
     subtext: "Experience the Bloom's 2 Sigma effect. Get matched with a top-1% expert mentor who adapts lessons to your exact syllabus.",
     pills: [
       { icon: "🏆", text: "Live 1-on-1 Mentorship" },
-      { icon: "🧠", text: "AI Practice Dashboard" },
+      { icon: "🧠", text: "Personalized Study Roadmaps" },
       { icon: "📊", text: "Real-time Feedback Loop" },
       { icon: "📚", text: "Built-in Book Reader" },
     ]
@@ -81,8 +81,8 @@ export const SITE_CONTENT = {
     }
   ],
   footer: {
-    headline: "Ready to Ace IGCSE & IB Exams with Confidence?",
-    subtext: "Join UnboundYou today. Get your complete syllabus revision roadmap and full access to the AI practice dashboard.",
+    headline: "Ready to Ace IGCSE Exams with Confidence?",
+    subtext: "Join UnboundYou today. Get your complete syllabus revision roadmap and start improving your grades.",
     cta: "Book Your 1:1 Diagnostic Session for ₹9"
   }
 };

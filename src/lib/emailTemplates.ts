@@ -117,7 +117,7 @@ function footer(year: number): string {
   <tr>
     <td style="background: ${bgLight}; padding: 24px 40px; border-radius: 0 0 16px 16px; border-top: 1px solid ${borderColor}; text-align: center;">
       <p style="font-size: 11px; color: ${mutedText}; line-height: 1.6; margin: 0;">
-        &copy; ${year} UnboundYou &mdash; IGCSE &amp; IB Elite Tutoring<br />
+        &copy; ${year} UnboundYou &mdash; IGCSE Elite Tutoring<br />
         You're receiving this because you booked a demo session at unboundyou.com
       </p>
     </td>

@@ -24,7 +24,7 @@ const features = [
   },
   {
     title: "Experienced Teachers",
-    desc: "Curriculum-specific expert teachers (IGCSE/IB) with 5+ years average experience",
+    desc: "Curriculum-specific expert teachers (IGCSE) with 5+ years average experience",
     iconUrl: "https://img.icons8.com/?id=AZp2VfJc0n9C&format=png&size=64",
     color: "var(--brand-green)"
   },
