@@ -98,17 +98,17 @@ export function HeroSection({
               <div className="w-full max-w-md h-px bg-slate-100" />
 
               <div className="flex flex-wrap justify-center lg:justify-start items-center gap-y-2 gap-x-3 text-sm font-bold">
-                <span className="text-[var(--brand-blue)]">Mathematics</span>
+                <span className="text-[#0F1729]">Mathematics</span>
                 <div className="w-1 h-1 rounded-full bg-slate-300" />
-                <span className="text-[var(--brand-blue)]">Physics</span>
+                <span className="text-[#0F1729]">Physics</span>
                 <div className="w-1 h-1 rounded-full bg-slate-300" />
-                <span className="text-[var(--brand-blue)]">Chemistry</span>
+                <span className="text-[#0F1729]">Chemistry</span>
                 <div className="w-1 h-1 rounded-full bg-slate-300" />
-                <span className="text-[var(--brand-blue)]">Biology</span>
+                <span className="text-[#0F1729]">Biology</span>
                 <div className="w-1 h-1 rounded-full bg-slate-300" />
-                <span className="text-[var(--brand-blue)]">French</span>
+                <span className="text-[#0F1729]">French</span>
                 <div className="w-1 h-1 rounded-full bg-slate-300" />
-                <span className="text-[var(--brand-blue)]">ICT</span>
+                <span className="text-[#0F1729]">ICT</span>
               </div>
             </motion.div>
 

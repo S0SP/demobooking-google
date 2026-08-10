@@ -52,7 +52,7 @@ export function ValueProps() {
             {/* 50+ Tutors block */}
             <div className="bg-white rounded-[24px] flex flex-col items-center justify-center w-full py-6 shrink-0">
               <h3 className="text-[40px] font-bold mb-1 text-[var(--brand-blue)]">
-                50+
+                150+
               </h3>
               <p className="text-[15px] text-[var(--brand-blue)]">
                 Tutors

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { UserSearch, Mountain, Handshake } from "lucide-react";
+import Image from "next/image";
 
 export function SelectionCriteria() {
   const criteria = [
@@ -45,9 +46,19 @@ export function SelectionCriteria() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-[40px] font-bold text-[#0F1729] tracking-tight"
+            className="text-3xl md:text-[40px] font-bold text-[#0F1729] tracking-tight flex flex-wrap items-center justify-center gap-x-2 gap-y-1.5"
           >
-            3 Key Selection Criteria for <span className="text-[var(--brand-blue)]">UnboundYou Tutors</span>
+            <span>3 Key Selection Criteria for</span>
+            <span className="inline-flex items-center gap-2">
+              <Image
+                src="/logo.png"
+                alt="UnboundYou"
+                width={140}
+                height={40}
+                className="h-[28px] md:h-[38px] w-auto object-contain"
+              />
+              <span className="text-[var(--brand-blue)]">Tutors</span>
+            </span>
           </motion.h2>
         </div>
 
