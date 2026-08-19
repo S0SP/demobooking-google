@@ -20,7 +20,7 @@ const steps = [
   {
     iconUrl: "https://img.icons8.com/?id=05i5CNp7gW1d&format=png&size=64",
     title: "Book Your Trial",
-    description: "Confirm your ₹" + DEMO_BOOKING_PRICE_INR + " slot. You'll receive an instant WhatsApp confirmation from our team.",
+    description: "Confirm your ₹" + DEMO_BOOKING_PRICE_INR + " slot. You'll receive a WhatsApp confirmation from our team.",
     color: "var(--brand-green)",
   },
   {

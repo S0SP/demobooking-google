@@ -36,7 +36,14 @@ export function HeroSection({
                   "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop&q=80",
                   "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&h=100&fit=crop&q=80"
                 ].map((src, i) => (
-                  <img key={i} src={src} alt="Student" className="w-6 h-6 md:w-7 md:h-7 rounded-full border-2 border-white object-cover" />
+                  <Image
+                    key={i}
+                    src={src}
+                    alt="Student"
+                    width={28}
+                    height={28}
+                    className="w-6 h-6 md:w-7 md:h-7 rounded-full border-2 border-white object-cover"
+                  />
                 ))}
               </div>
               <span className="text-[10px] md:text-[11px] font-bold text-[#0F1729] uppercase tracking-wider">
@@ -67,7 +74,13 @@ export function HeroSection({
                 { icon: "https://img.icons8.com/color/48/calendar--v1.png", text: "Monthly Parent-Teacher Meetings" },
               ].map((pill, i) => (
                 <div key={i} className="flex items-center gap-1.5 bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 text-[12px] md:text-[13px] font-bold shadow-sm text-slate-800">
-                  <img src={pill.icon} alt={pill.text} className="w-4 h-4 object-contain" />
+                  <Image
+                    src={pill.icon}
+                    alt={pill.text}
+                    width={16}
+                    height={16}
+                    className="w-4 h-4 object-contain"
+                  />
                   <span>{pill.text}</span>
                 </div>
               ))}

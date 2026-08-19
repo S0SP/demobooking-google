@@ -1,4 +1,4 @@
-// src/components/HeroSection.tsx
+// src/components/BookingWidget.tsx
 // Full replacement
 
 "use client";
@@ -24,6 +24,7 @@ import {
 } from "../lib/bookingService";
 import { DEMO_BOOKING_PRICE_INR } from "@/lib/constants";
 import type { Country } from "react-phone-number-input";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 gsap.registerPlugin(useGSAP);
 
@@ -474,6 +475,43 @@ function CalendarStep({
     if (isDup) { setBookingStatus("duplicate"); return; }
 
     setBookingStatus("submitting");
+
+    // Track add_payment_info event (GTM/GA4 and FB Pixel)
+    sendGTMEvent({
+      event: "add_payment_info",
+      value: DEMO_BOOKING_PRICE_INR,
+      currency: "INR",
+      items: [
+        {
+          item_id: "trial_session",
+          item_name: "IGCSE Elite Tutoring Trial Session",
+          price: DEMO_BOOKING_PRICE_INR,
+          quantity: 1,
+          item_category: "Trial Session",
+          item_grade: formData.grade,
+          item_subjects: formData.subjects.join(", ")
+        }
+      ],
+      email: formData.email,
+      phone: (formData.countryCode || "") + (formData.phone || ""),
+    });
+
+    if (typeof window !== "undefined" && (window as unknown as { fbq?: (event: string, action: string, params?: Record<string, unknown>) => void }).fbq) {
+      try {
+        (window as unknown as { fbq: (event: string, action: string, params?: Record<string, unknown>) => void }).fbq("track", "AddPaymentInfo", {
+          value: DEMO_BOOKING_PRICE_INR,
+          currency: "INR",
+          content_name: "IGCSE Elite Tutoring Trial Session",
+          content_type: "product",
+          content_ids: ["trial_session"],
+          num_items: 1,
+          email: formData.email,
+          phone: (formData.countryCode || "") + (formData.phone || ""),
+        });
+      } catch (e) {
+        console.warn("[Analytics] AddPaymentInfo FB Pixel trigger failed:", e);
+      }
+    }
 
     const result = await submitBookingAndCreateOrder({
       name: formData.name,
@@ -930,7 +968,47 @@ export function BookingWidget({
     }
   }, [isReady, countryIso, formData.countryCode]);
 
-  const goToNext = () => { setDirection(1); setStep(2); };
+  const goToNext = () => {
+    // Track begin_checkout event (GTM/GA4 and FB Pixel)
+    sendGTMEvent({
+      event: "begin_checkout",
+      value: DEMO_BOOKING_PRICE_INR,
+      currency: "INR",
+      items: [
+        {
+          item_id: "trial_session",
+          item_name: "IGCSE Elite Tutoring Trial Session",
+          price: DEMO_BOOKING_PRICE_INR,
+          quantity: 1,
+          item_category: "Trial Session",
+          item_grade: formData.grade,
+          item_subjects: formData.subjects.join(", ")
+        }
+      ],
+      email: formData.email,
+      phone: (formData.countryCode || "") + (formData.phone || ""),
+    });
+
+    if (typeof window !== "undefined" && (window as unknown as { fbq?: (event: string, action: string, params?: Record<string, unknown>) => void }).fbq) {
+      try {
+        (window as unknown as { fbq: (event: string, action: string, params?: Record<string, unknown>) => void }).fbq("track", "InitiateCheckout", {
+          value: DEMO_BOOKING_PRICE_INR,
+          currency: "INR",
+          content_name: "IGCSE Elite Tutoring Trial Session",
+          content_type: "product",
+          content_ids: ["trial_session"],
+          num_items: 1,
+          email: formData.email,
+          phone: (formData.countryCode || "") + (formData.phone || ""),
+        });
+      } catch (e) {
+        console.warn("[Analytics] InitiateCheckout FB Pixel trigger failed:", e);
+      }
+    }
+
+    setDirection(1);
+    setStep(2);
+  };
   const goToBack = () => { setDirection(-1); setStep(1); };
 
   return (

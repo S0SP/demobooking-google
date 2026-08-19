@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
+import Image from "next/image";
 
 export function ValueProps() {
   return (
@@ -18,10 +19,13 @@ export function ValueProps() {
             className="rounded-[32px] p-4 flex flex-col bg-white/10 border border-white/20 order-2 lg:order-1"
           >
             <div className="relative w-full h-[140px] rounded-[24px] overflow-hidden mb-5">
-              <img
+              <Image
                 src="/images/tutor.png"
                 alt="Expert Tutor"
-                className="w-full h-full object-cover object-center"
+                fill
+                sizes="(max-width: 1024px) 100vw, 33vw"
+                priority
+                className="object-cover object-center"
               />
             </div>
             <div className="px-2 pb-2">
@@ -90,10 +94,12 @@ export function ValueProps() {
               </h3>
             </div>
             <div className="relative w-full h-[180px] lg:h-[200px] mt-auto rounded-[24px] overflow-hidden">
-              <img
+              <Image
                 src="/images/tutor_zoom_call.png"
                 alt="Student studying online"
-                className="w-full h-full object-cover"
+                fill
+                sizes="(max-width: 1024px) 100vw, 33vw"
+                className="object-cover"
               />
             </div>
           </motion.div>
