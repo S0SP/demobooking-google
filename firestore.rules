@@ -1,132 +1,27 @@
-// Firestore security rules for demo booking landing
 rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // ------------------------------------------------------------------------
-    // 1. MAIN BOOKINGS COLLECTION (Upgraded for Flat CSV Schema)
-    // ------------------------------------------------------------------------
+    // All writes happen via Admin SDK (server-side) — rules only govern client reads.
+
     match /bookings/{bookingId} {
-
-      // Required fields for a new booking document
-      function hasRequiredFields() {
-        let d = request.resource.data;
-        return d.keys().hasAll([
-          'name', 'email', 'phone', 'countryCode', 'country', 'whatsapp',
-          'whatsapp_click_to_chat', // Clickable URL for outreach
-          'grade', 'board', 'subjects_flat', // Flat string replacing array
-          'slot_iso_date', // Combined YYYY-MM-DD
-          'timePreference', 'timezone',
-          'status', 'source', 'createdAt', 'createdAt_readable' // Dual timestamps
-        ]);
-      }
-
-      // Validate each field’s type / format
-      function isValidData() {
-        let d = request.resource.data;
-        return
-          d.name is string && d.name.size() >= 2 && d.name.size() <= 80 &&
-          d.email is string && d.email.size() >= 5 &&
-            d.email.matches('^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$') &&
-          d.phone is string && d.phone.size() >= 7 && d.phone.size() <= 15 &&
-          d.countryCode is string && d.countryCode.size() >= 2 && d.countryCode.size() <= 5 &&
-          d.whatsapp is string && d.whatsapp.size() >= 8 && d.whatsapp.size() <= 20 &&
-
-          // Click‑to‑chat URL must start with the correct prefix
-          d.whatsapp_click_to_chat is string &&
-            d.whatsapp_click_to_chat.matches('^https://wa\\.me/[0-9]+$') &&
-
-          d.grade in ['6','7','8','9','10','11','12'] &&
-          d.board == 'IGCSE' &&               // Only IGCSE allowed
-
-          // Flat subjects string
-          d.subjects_flat is string && d.subjects_flat.size() >= 2 && d.subjects_flat.size() <= 200 &&
-
-          // Strict ISO date (YYYY‑MM‑DD)
-          d.slot_iso_date is string &&
-            d.slot_iso_date.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$') &&
-
-          d.timePreference in [
-            'Morning (7am–12pm)',
-            'Afternoon (12pm–5pm)',
-            'Evening (5pm–10pm)'
-          ] &&
-
-          d.status == 'pending_payment' &&
-          d.source in ['landing_page_hero'] &&
-
-          // Server‑side timestamps
-          d.createdAt == request.time &&
-          d.createdAt_readable is string && d.createdAt_readable.size() >= 10;
-      }
-
-      // Prevent any unexpected extra fields on creation
-      function noExtraFields() {
-        let allowed = [
-          'name', 'email', 'phone', 'countryCode', 'country', 'whatsapp',
-          'whatsapp_click_to_chat', 'grade', 'board', 'subjects_flat',
-          'slot_iso_date', 'timePreference', 'timezone',
-          'status', 'source', 'createdAt', 'createdAt_readable'
-        ];
-        return request.resource.data.keys().hasOnly(allowed);
-      }
-
-      // Fields that are allowed to be updated after creation (status flow & order id)
-      function allowedUpdateFields() {
-        let allowed = ['status', 'failure_reason', 'razorpay_order_id'];
-        return request.resource.data.keys().hasOnly(allowed);
-      }
-
-      // Public users may only create a new booking.
-      allow create: if hasRequiredFields() && isValidData() && noExtraFields();
-
-      // After the document exists, the client can read it (including real‑time listeners).
-      allow read: if exists(/databases/$(database)/documents/bookings/$(bookingId));
-
-      // Updates are limited to the allowed fields and only on existing documents.
-      allow update: if exists(/databases/$(database)/documents/bookings/$(bookingId)) && allowedUpdateFields();
-
-      // No list or delete from the client side.
-      allow list, delete: if false;
+      // Thank-you page reads its own booking doc
+      allow get:                  if true;
+      allow list, create, update,
+            delete:               if false;
     }
 
-    // ------------------------------------------------------------------------
-    // 2. SECURE PHONE INDEX (Fixed Scrape Vulnerability)
-    // ------------------------------------------------------------------------
     match /phoneIndex/{phoneId} {
-      // Allow reading a single phone index entry – useful for debugging or admin tools.
-      allow get:    if true;
-      // Block enumeration of the entire collection.
-      allow list:   if false;
-
-      // Creation rule – only the required fields, and createdAt must match request.time.
-      allow create: if
-        request.resource.data.keys().hasAll(['bookingId', 'createdAt', 'status']) &&
-        request.resource.data.bookingId is string &&
-        request.resource.data.bookingId.size() > 0 &&
-        request.resource.data.createdAt == request.time &&
-        request.resource.data.status == 'pending_payment';
-
-      allow update: if request.resource.data.keys().hasOnly(['status']) && request.resource.data.status in ['pending_payment', 'payment_success', 'payment_failed'];
-        allow delete: if false;
+      allow get:                  if true;  // duplicate pre-check
+      allow list, create, update,
+            delete:               if false; // server-only writes
     }
 
-    // ------------------------------------------------------------------------
-    // 3. SECURE EMAIL INDEX
-    // ------------------------------------------------------------------------
     match /emailIndex/{emailId} {
-      allow get:    if true;
-      allow list:   if false;
-
-      allow create: if
-        request.resource.data.keys().hasAll(['bookingId', 'createdAt', 'status']) &&
-        request.resource.data.bookingId is string &&
-        request.resource.data.bookingId.size() > 0 &&
-        request.resource.data.createdAt == request.time &&
-        request.resource.data.status == 'pending_payment';
-
-allow update: if request.resource.data.keys().hasOnly(['status']) && request.resource.data.status in ['pending_payment', 'payment_success', 'payment_failed'];
+      allow get:                  if true;  // duplicate pre-check
+      allow list, create, update,
+            delete:               if false; // server-only writes
     }
   }
 }
