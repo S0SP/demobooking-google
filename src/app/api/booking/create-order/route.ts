@@ -47,7 +47,8 @@ function normalizeEmailKey(email: string): string {
 /* ─── Razorpay order creation ─────────────────────────────────────────────── */
 
 async function createRazorpayOrder(
-  bookingId: string
+  bookingId: string,
+  source: string = "demo_landing_page_google"
 ): Promise<{ id: string; amount: number; currency: string }> {
   const credentials = Buffer.from(
     `${RAZORPAY_KEY_ID}:${RAZORPAY_KEY_SECRET}`
@@ -65,7 +66,7 @@ async function createRazorpayOrder(
       receipt: bookingId.slice(0, 40),
       notes: {
         booking_id: bookingId,
-        source: "demo_landing_page_google",
+        source,
       },
     }),
   });
@@ -94,6 +95,7 @@ interface BookingBody {
   preferredYear?: unknown;
   timePreference?: unknown;
   timezone?: unknown;
+  source?: unknown;
 }
 
 /* ─── Validation ──────────────────────────────────────────────────────────── */
@@ -233,9 +235,10 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   const bookingId = bookingRef.id;
 
   /* 6. Create Razorpay order */
+  const source = typeof body.source === "string" ? body.source : "demo_landing_page_google";
   let rzpOrder: { id: string; amount: number; currency: string };
   try {
-    rzpOrder = await createRazorpayOrder(bookingId);
+    rzpOrder = await createRazorpayOrder(bookingId, source);
   } catch {
     return NextResponse.json(
       { error: "Payment gateway error. Please try again." },
@@ -291,7 +294,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
     // Meta
     status: "pending_payment",
-    source: "landing_page_hero",
+    source,
     createdAt: FieldValue.serverTimestamp(),
     createdAt_readable: new Date().toISOString(),
   });
